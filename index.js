@@ -11,27 +11,29 @@ const tickets = [
     ['Berlin', 'Amsterdam'],
   ];
   
-  function findRoute(tickets, start) {
+  function Route(tickets, start) {
+    
     const route = [start];
     const visited = new Set([start]);
   
     while (route.length < tickets.length + 1) {
+
       const city = route[route.length - 1];
-      const nextTicket = tickets.find(([from]) => from === city);
+      const next = tickets.find(([from]) => from === city);
   
-      if (!nextTicket || visited.has(nextTicket[1])) {
+      if (!next || visited.has(next[1])) {
         break;
       }
   
-      route.push(nextTicket[1]);
-      visited.add(nextTicket[1]);
+      route.push(next[1]);
+      visited.add(next[1]);
     }
   
     return route;
   }
   
-  const startingCity = 'Kiev';
-  const route = findRoute(tickets, startingCity);
+  const startCity = 'Kiev';
+  const route = Route(tickets, startCity);
   
   console.log('Route:', route.join(' -> '));
   
